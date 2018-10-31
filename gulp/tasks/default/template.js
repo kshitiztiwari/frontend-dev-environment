@@ -6,42 +6,38 @@ module.exports = function(gulp, $, path, config) {
 	// This task is same as task nunjucks but this task do not look for the file
 	// changes. Since templates are not rendered to HTML, the changes in the 
 	// template files are not reflected in during the page reload.
-	gulp.task( 'nunjucks:template', function(){
-		return gulp.src(path.nunjucks.pages)
+	gulp.task( 'template:template', function(){
+		return gulp.src(path.template.pages)
 			.pipe($.plumber({
 				errorHandler : config.error
 			}))
 
 			// Render templates
-			.pipe($.nunjucksRender({
-				path: [path.nunjucks.templates]
-			}))
+			.pipe($.twig( config.template ))
 
 			// Save files
-			.pipe(gulp.dest(path.nunjucks.build.dev))
+			.pipe(gulp.dest(path.template.build.dev))
 
 			// Update browser
 			.pipe($.browserSync.stream());
 	});
 
 
-	gulp.task( 'nunjucks', function(){
-		return gulp.src(path.nunjucks.pages)
+	gulp.task( 'template', function(){
+		return gulp.src(path.template.pages)
 
-			.pipe($.changed(path.nunjucks.build.dev, config.changed.nunjucks))
+			.pipe($.changed(path.template.build.dev, config.changed.nunjucks))
 
 			// Handle errors
 			.pipe($.plumber({
 				errorHandler : config.error
 			}))
-			
-			// Render templates
-			.pipe($.nunjucksRender({
-				path: [path.nunjucks.templates]
-			}))
 
-			// Save files
-			.pipe(gulp.dest(path.nunjucks.build.dev))
+			// Render templates
+			.pipe($.twig( config.template ))
+
+			// Save files 
+			.pipe(gulp.dest(path.template.build.dev))
 
 			// Update browser
 			.pipe($.browserSync.stream());

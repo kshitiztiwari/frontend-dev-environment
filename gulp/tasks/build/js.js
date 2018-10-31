@@ -1,5 +1,22 @@
 'use strict';
 
+var webpack = require('webpack');
+var gulpWebpack = require('webpack-stream');
+
+var configWebpack = { 
+	mode: 'production',
+	output: {
+		filename: 'app.js',
+	},
+	plugins: [
+		new webpack.ProvidePlugin({
+			$: "jquery",
+			jQuery: "jquery"
+		})
+	]
+}
+
+
 // Copy js to distribution folder.
 // 
 // Tasks
@@ -10,6 +27,8 @@ module.exports = function(gulp, $, path, config) {
 			.pipe($.plumber({
 				errorHandler : config.error
 			}))
+
+			.pipe(gulpWebpack( configWebpack, webpack ))
 			
 			.pipe(gulp.dest(path.js.build.dist));
 	});
