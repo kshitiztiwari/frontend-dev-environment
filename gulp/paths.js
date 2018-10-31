@@ -3,7 +3,8 @@
 // Base paths
 var app	 	=	 './app/',
 	dist 	= 	 './dist/',
-	dev 	=	 app;
+	dev 	=	 app,
+	serveDir   =	 './serve/';
 
 
 // Main paths
@@ -13,61 +14,74 @@ module.exports = {
 		dev : app
 	},
 
+	serve : {
+		dist : dist,
+		dev : serveDir
+	},
+
 	sass : {
 		src : [
-			dev + 'scss/**/*.sass'
+			dev + 'scss/**/*.{sass,scss}'
 		],
 
 		build : {
-			dev: dev + 'css',
-			dist: dist + 'css'
+			dev: serveDir,
+			dist: dist
 		}
 	},
 
 	images : {
-		src : app + 'img/*',
+		src : serveDir + 'images/*',
 
 		build : {
-			dev: dev + 'img',
-			dist: dist + 'img'
+			dev: serveDir + 'images',
+			dist: dist + 'images'
 		}
 	},
 
 	js : {
-			src : app + 'js/*',
-
+			src : dev + 'js/*',
+			watch: dev + 'js/*',
 			build : {
-				dev: dev + 'js',
+				dev: serveDir +'js',
 				dist: dist + 'js'
 			}
 		},
 
 	fonts : {
-		src : app + 'fonts/**/*',
+		src : serveDir + 'fonts/**/*',
 
 		build : {
-			dev: dev + 'fonts',
+			dev: serveDir + 'fonts',
 			dist: dist + 'fonts'
 		}
 	},
 
-	nunjucks : {
-		src : app + 'html/templates/*.{html,nunjucks}',
-		templates: app + 'html/templates',
-		pages : app + 'html/pages/*.{html,nunjucks}',
+	template : {
+		src : app + 'html/views/*.{html,nunjucks,twig}',
+		templates: app + 'html/views/{components,partials,layouts}',
+		pages : app + 'html/views/*.{html,nunjucks,twig}',
+		paths: [app + 'html/'],
 
 		watch : {
-			pages : app + 'html/pages/*.{html,nunjucks}',
-			templates :  app + 'html/templates/*.{html,nunjucks}'
+			pages : app + 'html/{views}/*.{html,nunjucks,twig}',
+			templates :  app + 'html/{components,partials,layouts}/*.{html,nunjucks,twig}'
 		},
 		
 		build : {
-			dev : dev,
+			dev : serveDir,
 			dist: dist
 		}
 	},
 
 	html : {
-		src : app + '*.html'
+		src : serveDir + '*.html'
+	},
+
+	assets: {
+		src: app + 'assets/**/*',
+		watch:  app + 'assets/**/*',
+		dist: dist,
+		serve: serveDir
 	}
 }

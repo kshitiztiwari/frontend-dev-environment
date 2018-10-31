@@ -8,16 +8,29 @@ module.exports = {
 	serve: {
 		dev: {
 			server: {
-				baseDir: path.build.dev
+				baseDir: path.serve.dev
 			},
+			open: false,
+			scrollThrottle: 1000,
+			reloadDelay: 500,
+			reloadDebounce: 500,
+			reloadThrottle: 500,
 			browser: 'google chrome'
 		},
 		dist: {
 			server: {
-				baseDir: path.build.dist
+				baseDir: path.serve.dist
 			},
 			browser: 'google chrome'
 		}
+	},
+
+	watch: {
+		interval: 250,
+		debounceDelay: 250,
+		readDelay: 500,
+		ignoreInitial: true,
+		cwd: __dirname + '/../'
 	},
 
 	sass: {
@@ -26,6 +39,8 @@ module.exports = {
 			includePaths: ['node_modules/bootstrap/scss']
 		}
 	},
+
+	webpack: require( './webpack.config' ),
 
 	images: {
 		 imageminOptions: {
@@ -60,6 +75,10 @@ module.exports = {
 		nunjucks : {
 			extension : '.html'
 		}
+	},
+
+	template : {
+		base: path.template.paths
 	},
 
 
