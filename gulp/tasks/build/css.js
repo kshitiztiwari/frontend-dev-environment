@@ -10,35 +10,31 @@
 // gulp-css-beautify: $.cssBeautify
 // gulp-rename: $.rename
 // 
+
+var cssnano = require('cssnano');
+var autoprefixer = require('autoprefixer');
+
 module.exports = function(gulp, $, path, config) {
-	console.log(  config.css.cssbeautifyOptions );
 	gulp.task( 'dist:css', function(){
+		var plugins = [
+			autoprefixer(),
+			cssnano()
+		];
+
 		return gulp.src(path.sass.build.dev + '/*.css')
 
 			.pipe($.plumber({
 				errorHandler : config.error
 			}))
-
-			// Strip unimportant css comments
-			.pipe($.stripCssComments(
-				config.css.stripCommentsOptions
+			
+			.pipe($.sass(
+				config.sass.options
 			))
 
-			// beautify final css code
-            .pipe($.cssbeautify(
-                config.css.cssbeautifyOptions
-            ))
-
-            // Save unminified file
-            .pipe(gulp.dest(path.sass.build.dist))
+			// .pipe( $.autoprefixer( config.autoprefixer ))
 
             // Minify CSS
-			.pipe($.cssnano())
-
-			// Rename minified CSS
-			.pipe($.rename(
-				config.css.renameOptions
-			))
+			.pipe($.postcss(plugins))
 
 			.pipe(gulp.dest(path.sass.build.dist))
 	})

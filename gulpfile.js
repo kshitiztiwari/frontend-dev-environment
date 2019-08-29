@@ -12,21 +12,24 @@ var $ = require('gulp-load-plugins')({
 $.loadSubtasks('./gulp/tasks/**/*.js', $, path, config);
 
 // Default task
-gulp.task( 'default', [	
-	'assets',
-	'template',
-	'template:template',
-	'sass', 
-	'webpack:js',
-	'browsersync',
-	'watch'
-] );
+gulp.task( 'default', gulp.series(
+	gulp.parallel(
+		gulp.series ( 'assets',
+		'template',
+		'template:template',
+		'sass', 
+		'webpack:js',
+		'browsersync'),
+	'watch')
+ ) );
+
 
 // Distribution task
-gulp.task( 'dist', [
-	'nunjucks',
+gulp.task( 'dist', gulp.series(
+	'dist:html',
 	'dist:html',
 	'dist:assets',
+	'dist:images',
 	'dist:css',
 	'dist:js'
-] );
+ ) );
