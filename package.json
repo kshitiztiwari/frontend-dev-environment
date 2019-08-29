@@ -1,7 +1,7 @@
 {
-  "name": "frontend-dev-environment",
-  "version": "2.0.0",
-  "description": "Front end development with SASS and Twig",
+  "name": "frontend-dev",
+  "version": "1.0.0",
+  "description": "Frontend Development with Twig",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,37 +14,46 @@
     "Enviromnent"
   ],
   "author": "Kshitiz Tiwari",
-  "license": "MIT",
+  "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.18.12",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^5.0.0",
-    "gulp-changed": "^3.1.0",
-    "gulp-cssbeautify": "^1.0.0",
-    "gulp-cssnano": "^2.1.2",
-    "gulp-imagemin": "^4.1.0",
-    "gulp-load-plugins": "^1.5.0",
+    "ansi-colors": "^4.1.1",
+    "autoprefixer": "^9.6.1",
+    "browser-sync": "^2.26.7",
+    "cssnano": "^4.1.10",
+    "fancy-log": "^1.3.3",
+    "gulp": "^4.0.2",
+    "gulp-changed": "^4.0.1",
+    "gulp-cssbeautify": "^1.0.1",
+    "gulp-imagemin": "^6.1.0",
+    "gulp-load-plugins": "^2.0.1",
     "gulp-load-subtasks": "^1.1.2",
-    "gulp-newer": "^1.3.0",
-    "gulp-plumber": "^1.1.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^4.0.1",
-    "gulp-sourcemaps": "^2.6.4",
+    "gulp-newer": "^1.4.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
     "gulp-strip-css-comments": "^2.0.0",
     "gulp-twig": "^1.2.0",
-    "gulp-util": "^3.0.8",
-    "gulp-watch": "^4.3.11",
-    "imagemin-pngquant": "^6.0.0",
-    "webpack": "^4.8.3",
-    "webpack-stream": "^5.1.1"
+    "gulp-watch": "^5.0.1",
+    "imagemin-pngquant": "^8.0.0",
+    "webpack": "^4.39.3",
+    "webpack-stream": "^5.2.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bootstrap": "^4.3.1"
+  },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:kshitiztiwari/frontend-dev-environment.git"
+    "url": "git+ssh://git@gitlab.com:kshitiztiwari/frontend-dev.git"
   },
   "bugs": {
-    "url": "https://github.com/kshitiztiwari/frontend-dev-environment/issues"
+    "url": "https://gitlab.com/kshitiztiwari/frontend-dev/issues"
   },
-  "homepage": "https://github.com/kshitiztiwari/frontend-dev-environment#readme"
+  "homepage": "https://gitlab.com/kshitiztiwari/frontend-dev/issues#README",
+  "browserslist": [
+    "last 4 versions",
+    "> 1%",
+    "not dead"
+  ]
 }
